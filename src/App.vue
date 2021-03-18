@@ -1,17 +1,30 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <header className="App-header">
+      <h1>Clock</h1>
+    </header>
+    <pre><code>{{time}}</code></pre>
+    <button v-on:click="getTime()">Get New Time</button>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
+  data: () => {
+    return { internalTime: 'no time set' }
+  },
+  computed: {
+    time() {
+      return this.internalTime;
+    }
+  },
+  methods: {
+    async getTime() {
+      const res = await fetch('');
+      return this.internalTime = await res.text();
+    }
   }
 }
 </script>
